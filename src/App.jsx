@@ -74,6 +74,22 @@ function App() {
           delay: 1,
         }}
       />
+
+      <motion.div
+        className="button"
+        whileHover={{
+          scale: 1.1,
+        }}
+        whileTap={{
+          backgroundColor: "black",
+          color: "white",
+        }}
+        initial={{
+          x:700
+        }}
+      >
+        Button
+      </motion.div>
     </div>
   );
 }
