@@ -52,3 +52,14 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+.drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-color: bisque;
+  border: 3px solid white;
+  color: black;
+}

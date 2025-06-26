@@ -85,10 +85,19 @@ function App() {
           color: "white",
         }}
         initial={{
-          x:700
+          x: 700,
         }}
       >
         Button
+      </motion.div>
+
+      <motion.div
+        className="drag"
+        drag
+        whileDrag={{ scale: 0.8 }}
+        dragConstraints={{ left: 0 }}
+      >
+        Drag
       </motion.div>
     </div>
   );
