@@ -1,9 +1,16 @@
 import React from "react";
 import { motion, useScroll } from "motion/react";
+import { useTransform } from "framer-motion";
 
 const ScrollMotion = () => {
   console.log(useScroll());
   const { scrollYProgress } = useScroll();
+
+  // useTransform maps scrollYProgress (0 to 1) to opacity (0 to 1)
+  // When at the top: opacity = 0 (invisible)
+  // When at the bottom: opacity = 1 (fully visible)
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <div className=" text-white text-center font-mono space-y-6">
       <motion.div
@@ -11,7 +18,12 @@ const ScrollMotion = () => {
         style={{ scaleX: scrollYProgress }}
       />
       <motion.h2 className="text-4xl font-bold"> Hey Surjo</motion.h2>
-      <motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{ opacity }}
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
