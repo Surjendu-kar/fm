@@ -26,6 +26,12 @@ body {
   background-color: lightgreen;
   border: 3px solid white;
 }
+.box-3 {
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  border: 3px solid white;
+}
 .circle {
   width: 100px;
   height: 100px;
