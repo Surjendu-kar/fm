@@ -4,6 +4,8 @@ import { useTransform } from "framer-motion";
 
 const ScrollMotion = () => {
   const { scrollYProgress } = useScroll();
+  // scrollYProgress.current tells us how far we have scrolled vertically, as a percentage of the total scrollable area.
+  // We don't need to manually read or pass .current to useTransform—Framer Motion does this for us.
 
   // When scrollYProgress is 0 (top), opacity will be 0 (invisible).
   // When scrollYProgress is 1 (bottom), opacity will be 1 (fully visible).
