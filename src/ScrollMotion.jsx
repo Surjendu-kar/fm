@@ -6,9 +6,8 @@ const ScrollMotion = () => {
   console.log(useScroll());
   const { scrollYProgress } = useScroll();
 
-  // useTransform maps scrollYProgress (0 to 1) to opacity (0 to 1)
-  // When at the top: opacity = 0 (invisible)
-  // When at the bottom: opacity = 1 (fully visible)
+  // When scrollYProgress is 0 (top), opacity will be 0 (invisible).
+  // When scrollYProgress is 1 (bottom), opacity will be 1 (fully visible).
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (

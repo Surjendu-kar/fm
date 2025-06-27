@@ -7,7 +7,7 @@ const BasicMotion = () => (
       className="box-1"
       initial={{
         // initial position
-        x: 100,
+        x: -100,
       }}
       animate={{
         // final position
@@ -24,7 +24,7 @@ const BasicMotion = () => (
       className="box-2"
       initial={{
         // initial position
-        x: 100,
+        x: -100,
       }}
       animate={{
         // final position
@@ -42,7 +42,7 @@ const BasicMotion = () => (
       className="circle"
       initial={{
         // initial position
-        x: 100,
+        x: -100,
       }}
       animate={{
         // final position
