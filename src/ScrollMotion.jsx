@@ -3,7 +3,6 @@ import { motion, useScroll } from "motion/react";
 import { useTransform } from "framer-motion";
 
 const ScrollMotion = () => {
-  console.log(useScroll());
   const { scrollYProgress } = useScroll();
 
   // When scrollYProgress is 0 (top), opacity will be 0 (invisible).
