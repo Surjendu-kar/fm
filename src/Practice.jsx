@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   AnimatePresence,
   motion,
+  spring,
   useCycle,
   useScroll,
   useTransform,
@@ -49,6 +50,33 @@ const Practice = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const [cycle, cycleLayout] = useCycle("stacked", "column");
+  const [animationCycle, setAnimationCycle] = useCycle("hidden", "visible");
+
+  // New list and item variants for the animated list
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        type: spring,
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+        staggerDirection: 1,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+        staggerChildren: 0.3,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const item = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -100 },
+  };
 
   return (
     <motion.div
@@ -117,6 +145,45 @@ const Practice = () => {
             className="bg-white cursor-pointer"
           />
         ))}
+      </div>
+      {/* New animated list style */}
+      <div className="flex flex-col  ml-8 gap-2 w-[200px]">
+        <button
+          className="mb-2 h-[40px] w-[100px] mx-auto rounded bg-[#0cdcf7] text-white font-semibold hover:bg-[#099eb3] transition-colors duration-300"
+          onClick={() => setAnimationCycle()}
+        >
+          {animationCycle === "visible" ? "Hide List" : "Show List"}
+        </button>
+        <AnimatePresence>
+          {animationCycle === "visible" && (
+            <motion.ul
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={list}
+              className="flex flex-col gap-2"
+            >
+              <motion.li
+                variants={item}
+                className="bg-[#0cdcf7] h-[40px] w-[200px] rounded-md flex items-center justify-center text-white font-semibold shadow"
+              >
+                Item 1
+              </motion.li>
+              <motion.li
+                variants={item}
+                className="bg-[#0cdcf7] h-[40px] w-[200px] rounded-md flex items-center justify-center text-white font-semibold shadow"
+              >
+                Item 2
+              </motion.li>
+              <motion.li
+                variants={item}
+                className="bg-[#0cdcf7] h-[40px] w-[200px] rounded-md flex items-center justify-center text-white font-semibold shadow"
+              >
+                Item 3
+              </motion.li>
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
