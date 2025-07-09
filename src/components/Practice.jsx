@@ -84,7 +84,7 @@ const Practice = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
       style={{ opacity }}
-      className="flex px-20 h-[300px] justify-center  gap-40"
+      className="flex px-20 h-[200px] justify-center  gap-40"
     >
       <motion.div
         animate={{
@@ -130,6 +130,11 @@ const Practice = () => {
           </motion.div>
         )}
 
+        {/*
+          Render 3 notification cards using dynamic variants.
+          The custom={i} prop allows each card to receive its own index,
+          so the animateVariants function can return different styles for each card.
+        */}
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
