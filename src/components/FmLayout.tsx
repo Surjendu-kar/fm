@@ -12,7 +12,7 @@ type CardProps = {
 const Card = ({ title, description, imgSrc }: CardProps) => {
   return (
     <motion.div
-      className="flex items-center justify-between bg-white p-4 rounded-md hover:bg-gray-50"
+      className="flex items-center justify-between bg-white p-2 rounded-md hover:bg-gray-50"
       whileHover={{ scale: 1.05 }}
     >
       <div className="flex items-center justify-center gap-4">
@@ -24,7 +24,7 @@ const Card = ({ title, description, imgSrc }: CardProps) => {
       </div>
 
       <div>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+        <button className="bg-green-500 text-white px-4 py-1 rounded-md">
           play
         </button>
       </div>
@@ -178,7 +178,7 @@ function FmLayout() {
             duration: 0.3,
             ease: "easeInOut",
           }}
-          className="group relative text-neutral-500 px-12 py-4 rounded-lg bg-black shadow-[0px_1px_4px_0px_rgba(255,255,255,0.1)_inset,0px_-1px_4px_0px_rgba(255,255,255,0.1)_inset]"
+          className="cursor-pointer group relative text-neutral-500 px-12 py-4 rounded-lg bg-black shadow-[0px_1px_4px_0px_rgba(255,255,255,0.1)_inset,0px_-1px_4px_0px_rgba(255,255,255,0.1)_inset]"
         >
           <span className="group-hover:text-cyan-500 transition-colors duration-300">
             {showMusicList ? "Hide Music List" : "Show Music List"}
