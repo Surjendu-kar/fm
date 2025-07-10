@@ -5,6 +5,7 @@ import KeyframesMotion from "./components/KeyframesMotion";
 import ScrollMotion from "./components/ScrollMotion";
 import Practice from "./components/Practice";
 import Counter from "./components/Counter";
+import FmLayout from "./components/FmLayout";
 
 function App() {
   return (
@@ -67,6 +68,8 @@ function App() {
       <Practice />
 
       <Counter />
+
+      <FmLayout />
     </div>
   );
 }
