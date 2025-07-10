@@ -1,29 +1,35 @@
-import React from "react";
-import { useMotionValue, motion, animate } from "motion/react";
+import React, { useRef } from "react";
+import { useMotionValue, motion, animate, useInView } from "motion/react";
 import { useEffect, useState } from "react";
 
 function Counter() {
   const count = useMotionValue(0);
   const [display, setDisplay] = useState(0);
   const [period, setPeriod] = useState<"monthly" | "yearly">("monthly");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    // Animate count from 0 to 100 over 5 seconds
-    const controls = animate(count, 100, { duration: 5 });
+    if (isInView) {
+      const controls = animate(count, 100, { duration: 5 });
 
-    // Subscribe to count changes and update display
-    const unsubscribe = count.on("change", (latest) => {
-      setDisplay(Number(latest.toFixed(0)));
-    });
+      // Subscribe to count changes and update display
+      const unsubscribe = count.on("change", (latest) => {
+        setDisplay(Number(latest.toFixed(0)));
+      });
 
-    return () => {
-      controls.stop();
-      unsubscribe();
-    };
-  }, [count]);
+      return () => {
+        controls.stop();
+        unsubscribe();
+      };
+    }
+  }, [count, isInView]);
 
   return (
-    <motion.pre className="font-Inter flex flex-col items-center justify-center font-mono text-white w-[577px] h-[400px] rounded-4xl bg-[#1d2628]">
+    <motion.pre
+      ref={ref}
+      className="font-Inter flex flex-col items-center justify-center font-mono text-white w-[577px] h-[400px] rounded-4xl bg-[#1d2628]"
+    >
       <motion.div>{display}</motion.div>
       <motion.div className="bg-[#ffffff0d] rounded-4xl  py-1 px-1.5 flex gap-4">
         <div className="capitalize bg-white text-[#121b1c] rounded-2xl px-3 p-1">

@@ -69,8 +69,9 @@ const parentVariants = {
   hidden: {
     opacity: 0,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.5,
       staggerDirection: -1,
+      when: "afterChildren",
     },
   },
   visible: {
@@ -82,7 +83,23 @@ const parentVariants = {
 };
 
 const childVariants = {
-  hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)", x: "-100vw" },
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+    filter: "blur(10px)",
+    x: "-100vw",
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      mass: 0.3,
+      filter: {
+        duration: 0.3,
+      },
+      scale: {
+        duration: 0.2,
+      },
+    },
+  },
   visible: {
     opacity: 1,
     scale: 1,
@@ -107,39 +124,74 @@ function FmLayout() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [currentCard, setCurrentCard] = useState<CardProps | null>(null);
+  const [showMusicList, setShowMusicList] = useState(true);
 
   return (
     <div className="relative flex flex-col  max-w-4xl mx-auto py-40">
-      <motion.ul
-        ref={ref}
-        className="flex flex-col gap-6 cursor-pointer"
-        variants={parentVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {musicList.map((card) => {
-          return (
-            <motion.li
-              key={card.id}
-              variants={childVariants}
-              layoutId={`card-${card.id}`}
-              onClick={() => setCurrentCard(card)}
-            >
-              <Card
-                id={card.id}
-                title={card.title}
-                description={card.description}
-                imgSrc={card.imgSrc}
-              />
-            </motion.li>
-          );
-        })}
-      </motion.ul>
+      {/* music list */}
+      <AnimatePresence>
+        {showMusicList && (
+          <motion.ul
+            ref={ref}
+            className="flex flex-col gap-6 cursor-pointer"
+            variants={parentVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            exit="hidden"
+          >
+            {musicList.map((card) => {
+              return (
+                <motion.li
+                  key={card.id}
+                  variants={childVariants}
+                  layoutId={`card-${card.id}`}
+                  onClick={() => setCurrentCard(card)}
+                >
+                  <Card
+                    id={card.id}
+                    title={card.title}
+                    description={card.description}
+                    imgSrc={card.imgSrc}
+                  />
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
 
+      <div className="mt-10 flex justify-center items-center [perspective:1000px] [transform-style:preserve-3d]">
+        {/* button */}
+        <motion.button
+          onClick={() => setShowMusicList((prev) => !prev)}
+          whileHover={{
+            rotateX: 10,
+            rotateY: 20,
+            boxShadow: "0px 20px 50px rgba(8, 112, 184, 0.7)",
+            y: -5,
+          }}
+          whileTap={{
+            y: 0,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeInOut",
+          }}
+          className="group relative text-neutral-500 px-12 py-4 rounded-lg bg-black shadow-[0px_1px_4px_0px_rgba(255,255,255,0.1)_inset,0px_-1px_4px_0px_rgba(255,255,255,0.1)_inset]"
+        >
+          <span className="group-hover:text-cyan-500 transition-colors duration-300">
+            {showMusicList ? "Hide Music List" : "Show Music List"}
+          </span>
+          <span className="absolute h-px w-3/4 mx-auto inset-x-0 bottom-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></span>
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm absolute h-[4px] w-full mx-auto inset-x-0 bottom-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></span>
+        </motion.button>
+      </div>
+      {/* overlay */}
       {currentCard && (
         <div className="fixed w-full h-full inset-0 bg-black/50 backdrop-blur-sm z-10" />
       )}
 
+      {/* current card */}
       <AnimatePresence>
         {currentCard && (
           <motion.div
