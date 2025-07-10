@@ -69,7 +69,7 @@ const parentVariants = {
   hidden: {
     opacity: 0,
     transition: {
-      staggerChildren: 0.5,
+      staggerChildren: 0.3,
       staggerDirection: -1,
       when: "afterChildren",
     },
@@ -188,7 +188,10 @@ function FmLayout() {
       </div>
       {/* overlay */}
       {currentCard && (
-        <div className="fixed w-full h-full inset-0 bg-black/50 backdrop-blur-sm z-10" />
+        <div
+          className="fixed w-full h-full inset-0 bg-black/50 backdrop-blur-sm z-10"
+          onClick={() => setCurrentCard(null)}
+        />
       )}
 
       {/* current card */}
