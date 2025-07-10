@@ -9,7 +9,12 @@ import FmLayout from "./components/FmLayout";
 
 function App() {
   return (
-    <div className="h-screen pt-10 ">
+    <motion.div
+      initial={{ opacity: 0, filter: "blur(10px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 1, delay: 0.5 }}
+      className="h-screen pt-10 "
+    >
       {/* basic */}
       <BasicMotion />
       {/* keyframes animation */}
@@ -46,7 +51,7 @@ function App() {
       </div>
 
       <FmLayout />
-    </div>
+    </motion.div>
   );
 }
 
