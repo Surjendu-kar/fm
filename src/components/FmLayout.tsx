@@ -133,7 +133,7 @@ function FmLayout() {
         {showMusicList && (
           <motion.ul
             ref={ref}
-            className="flex flex-col gap-6 cursor-pointer"
+            className="flex flex-col gap-6 "
             variants={parentVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -146,6 +146,7 @@ function FmLayout() {
                   variants={childVariants}
                   layoutId={`card-${card.id}`}
                   onClick={() => setCurrentCard(card)}
+                  className="cursor-pointer"
                 >
                   <Card
                     id={card.id}

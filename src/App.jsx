@@ -41,7 +41,7 @@ function App() {
 
       <Practice />
 
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center mt-20">
         <Counter />
       </div>
 
