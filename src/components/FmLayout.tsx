@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { AnimatePresence, motion, scale, useInView } from "framer-motion";
-import { IoClose } from "react-icons/io5";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { X } from "lucide-react";
 
 type CardProps = {
   id: number;
@@ -127,13 +127,13 @@ function FmLayout() {
   const [showMusicList, setShowMusicList] = useState(true);
 
   return (
-    <div className="relative flex flex-col  max-w-4xl mx-auto py-40">
+    <div className="relative flex flex-col max-w-4xl mx-auto py-40">
       {/* music list */}
       <AnimatePresence>
         {showMusicList && (
           <motion.ul
             ref={ref}
-            className="flex flex-col gap-6 "
+            className="flex flex-col gap-6"
             variants={parentVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -187,6 +187,7 @@ function FmLayout() {
           <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm absolute h-[4px] w-full mx-auto inset-x-0 bottom-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></span>
         </motion.button>
       </div>
+
       {/* overlay */}
       {currentCard && (
         <div
@@ -200,9 +201,10 @@ function FmLayout() {
         {currentCard && (
           <motion.div
             layoutId={`card-${currentCard.id}`}
-            className="p-4 flex flex-col gap-2 shadow-lg fixed z-20 inset-x-0 top-25 m-auto h-[600px] w-96 rounded-2xl bg-white border border-neutral-100"
+            className="p-4 flex flex-col shadow-lg fixed z-20 inset-x-0 top-25 m-auto h-[500px] w-96 rounded-2xl bg-white border border-neutral-100"
           >
-            <div className="flex justify-end">
+            {/* Close button */}
+            <div className="flex justify-end mb-2">
               <motion.button
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -210,17 +212,20 @@ function FmLayout() {
                 className="text-2xl font-bold hover:bg-gray-100 rounded-full p-1 transition-all duration-300 cursor-pointer"
                 onClick={() => setCurrentCard(null)}
               >
-                <IoClose />
+                <X />
               </motion.button>
             </div>
 
+            {/* Image */}
             <img
               src={currentCard.imgSrc}
               alt={currentCard.title}
-              className="h-60 aspect-square rounded-xl"
+              className="h-48 w-full object-cover rounded-xl mb-4"
             />
 
-            <div className="flex flex-col gap-3">
+            {/* Content area with flex-1 to take remaining space */}
+            <div className="flex flex-col gap-3 flex-1 min-h-0">
+              {/* Title and play button */}
               <div className="flex items-center justify-between">
                 <div className="flex flex-col">
                   <h2 className="text-lg font-semibold">{currentCard.title}</h2>
@@ -233,18 +238,31 @@ function FmLayout() {
                 </button>
               </div>
 
-              <p className="text-sm text-gray-500 ">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse non est ut sem efficitur ultrices. Nulla dictum
-                pellentesque tellus et vulputate. Cras scelerisque consequat
-                mauris eu bibendum. Sed sollicitudin sapien ac justo porta, eu
-                sodales nulla dignissim. Curabitur accumsan nisl sit amet sem
-                eleifend, in posuere diam sodales. Phasellus tempus, nunc vitae
-                commodo gravida, leo arcu commodo velit, ac ultricies quam enim
-                vitae odio. Vestibulum ante ipsum primis in faucibus orci luctus
-                ipsum sagittis pulvinar. Pellentesque sapien nisi, tempus
-                ullamcorper diam ornare, porttitor auctor sapien.
-              </p>
+              {/* Scrollable lorem text with constrained height */}
+              <div className="flex-1 min-h-0 [mask-image:linear-gradient(to_top,transparent,black_20%)]">
+                <p className="text-sm text-gray-500 h-full overflow-y-auto pr-1 pb-5 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gray-400 [&::-webkit-scrollbar-thumb]:transition-colors [&::-webkit-scrollbar-thumb]:duration-200 [scrollbar-width:thin] [scrollbar-color:transparent_transparent] hover:[scrollbar-color:rgb(156_163_175)_transparent]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse non est ut sem efficitur ultrices. Nulla dictum
+                  pellentesque tellus et vulputate. Cras scelerisque consequat
+                  mauris eu bibendum. Sed sollicitudin sapien ac justo porta, eu
+                  sodales nulla dignissim. Curabitur accumsan nisl sit amet sem
+                  eleifend, in posuere diam sodales. Phasellus tempus, nunc
+                  vitae commodo gravida, leo arcu commodo velit, ac ultricies
+                  quam enim vitae odio. Vestibulum ante ipsum primis in faucibus
+                  orci luctus ipsum sagittis pulvinar. Pellentesque sapien nisi,
+                  tempus ullamcorper diam ornare, porttitor auctor sapien. Lorem
+                  ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                  non est ut sem efficitur ultrices. Nulla dictum pellentesque
+                  tellus et vulputate. Cras scelerisque consequat mauris eu
+                  bibendum. Sed sollicitudin sapien ac justo porta, eu sodales
+                  nulla dignissim. Curabitur accumsan nisl sit amet sem
+                  eleifend, in posuere diam sodales. Phasellus tempus, nunc
+                  vitae commodo gravida, leo arcu commodo velit, ac ultricies
+                  quam enim vitae odio. Vestibulum ante ipsum primis in faucibus
+                  orci luctus ipsum sagittis pulvinar. Pellentesque sapien nisi,
+                  tempus ullamcorper diam ornare, porttitor auctor sapien.
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
