@@ -11,19 +11,10 @@ function App() {
   return (
     <div className="h-screen pt-10 ">
       {/* basic */}
-      <BasicMotion />
+      {/* <BasicMotion /> */}
       {/* keyframes animation */}
-      <KeyframesMotion />
+      {/* <KeyframesMotion /> */}
 
-      {/* drag */}
-      <motion.div
-        className="drag"
-        drag
-        whileDrag={{ scale: 0.8 }}
-        dragConstraints={{ left: 0 }}
-      >
-        Drag
-      </motion.div>
       {/* scroll animation */}
       <ScrollMotion />
 

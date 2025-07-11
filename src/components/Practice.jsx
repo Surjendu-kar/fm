@@ -83,7 +83,7 @@ const Practice = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      style={{ opacity }}
+      // style={{ opacity }}
       className="flex px-20 h-[200px] justify-center  gap-40"
     >
       <motion.div
