@@ -20,7 +20,7 @@ function App() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="container mx-auto px-4 py-24"
+        className="container mx-auto px-4 py-20"
       >
         <motion.h1
           initial={{ y: -50 }}
@@ -41,7 +41,7 @@ function App() {
       </motion.section>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 space-y-32 pb-32">
+      <div className="container mx-auto px-4 space-y-22 pb-20">
         {/* Music Player Section */}
         <section>
           <SectionHeader title="Interactive Music Player" />
