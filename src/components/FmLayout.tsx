@@ -18,7 +18,7 @@ const Card = ({ title, description, imgSrc }: CardProps) => {
       <div className="flex items-center justify-center gap-4">
         <img src={imgSrc} alt="" className="h-13 w-13 rounded-md" />
         <div className="flex flex-col">
-          <h2 className="text-md font-semibold">{title}</h2>
+          <h2 className="text-md font-semibold text-black">{title}</h2>
           <p className="text-xs text-gray-500">{description}</p>
         </div>
       </div>
@@ -278,7 +278,7 @@ function FmLayout() {
                 {/* Title and play button */}
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col">
-                    <h2 className="text-lg font-semibold">
+                    <h2 className="text-lg font-semibold text-black">
                       {currentCard.title}
                     </h2>
                     <p className="text-xs text-gray-500">
