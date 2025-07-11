@@ -6,7 +6,7 @@ const ScrollMotion = () => {
   const { scrollYProgress } = useScroll();
 
   // Transform scroll progress into different visual properties
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.2]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
