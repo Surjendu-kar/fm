@@ -147,15 +147,15 @@ function FmLayout() {
   ];
 
   return (
-    <div className="py-40 space-y-20">
+    <div className="py-20 space-y-20">
       {/* //use layout to show navbar */}
-      <div className="flex max-w-xl px-2 py-1 mx-auto bg-white rounded-full">
+      <div className="flex max-w-lg px-2 py-1 mx-auto bg-white rounded-full">
         {navList.map((nav) => {
           return (
             <motion.div
               key={nav.id}
               layoutId={`nav-${nav.id}`}
-              className="py-3 relative text-center w-full text-neutral-500 group cursor-pointer"
+              className="py-2 relative text-center w-full text-neutral-500 group cursor-pointer"
               onMouseEnter={() => setShowNavBG(nav.id)}
               onMouseLeave={() => setShowNavBG(null)}
             >
@@ -168,7 +168,7 @@ function FmLayout() {
                   className="absolute inset-0 w-full h-full bg-black rounded-full"
                 />
               )}
-              <span className="text-lg relative group-hover:text-white transition-colors duration-300">
+              <span className="text-sm relative group-hover:text-white transition-colors duration-300">
                 {nav.title}
               </span>
             </motion.div>

@@ -6,10 +6,12 @@ import ScrollMotion from "./components/ScrollMotion";
 import Practice from "./components/Practice";
 import Counter from "./components/Counter";
 import FmLayout from "./components/FmLayout";
+import FmUseAnimation from "./components/FmUseAnimation";
+import AnimationSequences from "./components/AnimationSequences";
 
 function App() {
   return (
-    <div className="h-screen pt-10 ">
+    <div className="h-screen my-20 ">
       {/* basic */}
       {/* <BasicMotion /> */}
       {/* keyframes animation */}
@@ -37,6 +39,10 @@ function App() {
       </div>
 
       <FmLayout />
+
+      <FmUseAnimation/>
+
+      <AnimationSequences/>
     </div>
   );
 }
